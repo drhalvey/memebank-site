@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Meme Bank invite</title>
+<meta property="og:title" content="Swap memes with me in Meme Bank 😂">
+<meta property="og:description" content="Tap to link up. Memes go straight into your Meme Bank, not your Messages or Photos.">
+<meta property="og:image" content="https://memebank.au/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="../img/favicon.png">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap">
+<link rel="stylesheet" href="../site.css">
+<style>
+body{min-height:100vh;display:flex;flex-direction:column}
+main{flex:1;display:flex;flex-direction:column;align-items:center;padding:24px 16px}
+.card{width:100%;max-width:460px;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:28px 22px;text-align:center;box-shadow:0 18px 44px -24px rgba(36,31,41,.45)}
+.card img{width:96px;height:96px;border-radius:22px}
+.card h1{font:800 28px var(--display);margin:14px 0 8px}
+.card p{color:var(--muted);margin:0 0 20px}
+.go{display:block;background:var(--tang);color:#fff;border-radius:14px;padding:16px;font-weight:700;font-size:18px;text-decoration:none}
+.code{margin-top:18px;font-size:14px;color:var(--muted)}
+.code b{font:700 20px ui-monospace,Menlo,monospace;letter-spacing:.12em;color:var(--fg)}
+ol{text-align:left;color:var(--muted);font-size:15px;padding-left:20px;margin:18px 0 0}
+</style>
+</head>
+<body>
+<div class="wrap" style="width:100%"><header class="top"><a class="brand" href="../"><img src="../img/icon-512.png" alt="">Meme Bank</a></header></div>
+<main>
+  <div class="card" id="card">
+    <img src="../img/icon-512.png" alt="">
+    <h1 id="h">Swap memes in Meme Bank</h1>
+    <p id="sub">Memes you send each other land in the app's Inbox, not your Messages or Photos.</p>
+    <a class="go" id="go" href="#">Open in Meme Bank</a>
+    <div class="code" id="codebox"></div>
+    <ol>
+      <li>Needs Meme Bank on your iPhone (ask for the TestFlight invite if you don't have it yet).</li>
+      <li>Tap <b>Open in Meme Bank</b>, put your first name in, tap <b>Link up</b>.</li>
+      <li>Nothing happens? Open Meme Bank, Settings, People, and type the code above.</li>
+    </ol>
+  </div>
+</main>
+<footer style="margin-top:24px"><div class="wrap"><span><a href="../">Meme Bank</a></span><span><a href="../privacy/">Privacy</a> · <a href="../terms/">Terms</a></span></div></footer>
+<script>
+(function(){
+  var API = "https://bbwjroytqxynborrqylr.supabase.co/functions/v1/memebank";
+  var c = (new URLSearchParams(location.search).get("c") || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+  var go = document.getElementById("go");
+  function esc(s){ return String(s || "").replace(/[&<>"']/g, function(x){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[x]; }); }
+  if (c.length !== 8) {
+    document.getElementById("h").textContent = "That invite link isn't complete";
+    document.getElementById("sub").textContent = "Ask for the link again, or type the 8-letter code in Meme Bank, Settings, People.";
+    go.style.display = "none";
+    return;
+  }
+  go.href = "memebank://invite?c=" + c;
+  document.getElementById("codebox").innerHTML = "Code: <b>" + esc(c) + "</b>";
+  fetch(API + "?invite=" + c).then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
+    if (!d) {
+      document.getElementById("h").textContent = "This invite has expired";
+      document.getElementById("sub").textContent = "Invites last 14 days. Ask for a new one.";
+      go.style.display = "none";
+      return;
+    }
+    document.getElementById("h").innerHTML = esc(d.from) + " wants to swap memes with you";
+    document.title = d.from + " invited you to Meme Bank";
+  }).catch(function(){});
+})();
+</script>
+</body>
+</html>
