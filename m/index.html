@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Meme Bank</title>
+<meta property="og:title" content="Someone sent you a meme 😂">
+<meta property="og:description" content="Tap to see it. No app needed.">
+<meta property="og:image" content="../img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="../img/favicon.png">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap">
+<link rel="stylesheet" href="../site.css">
+<style>
+body{min-height:100vh;display:flex;flex-direction:column}
+main{flex:1;display:flex;flex-direction:column;align-items:center;padding:8px 16px 24px}
+.from{color:var(--muted);font-size:15px;margin:4px 0 12px;text-align:center}
+.meme{width:100%;max-width:560px;background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 18px 44px -24px rgba(36,31,41,.45)}
+.meme img{display:block;width:100%;height:auto;background:#111}
+.linkcard{padding:28px 22px;text-align:center}
+.linkcard .site{font:800 26px var(--display);margin:8px 0 6px}
+.linkcard .ttl{color:var(--muted);margin-bottom:18px;word-break:break-word}
+.cap{padding:14px 16px;font-weight:600;border-top:1px solid var(--line);word-break:break-word}
+.react{display:flex;gap:12px;justify-content:center;margin:18px 0 6px}
+.rb{display:flex;align-items:center;gap:8px;background:var(--card);border:2px solid var(--line);border-radius:99px;padding:10px 20px;font:700 18px var(--body);color:var(--fg);cursor:pointer;min-width:112px;justify-content:center}
+.rb .n{font-variant-numeric:tabular-nums;color:var(--muted);font-size:16px}
+.rb[aria-pressed="true"].up{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 14%,var(--card))}
+.rb[aria-pressed="true"].down{border-color:var(--tang);background:var(--soft)}
+.meta{color:var(--muted);font-size:13px;text-align:center;margin-top:4px}
+.get{margin-top:26px;text-align:center;font-size:15px;color:var(--muted)}
+.state{max-width:440px;text-align:center;margin-top:60px}
+.state .big{font-size:64px}
+.state h1{font-size:30px;margin:10px 0}
+.skel{width:100%;max-width:560px;aspect-ratio:1;border-radius:20px;background:linear-gradient(90deg,var(--card),var(--line),var(--card));background-size:200% 100%;animation:sh 1.2s infinite}
+@keyframes sh{to{background-position:-200% 0}}
+</style>
+</head>
+<body>
+<div class="wrap" style="width:100%"><header class="top"><a class="brand" href="../"><img src="../img/icon-512.png" alt="">Meme Bank</a></header></div>
+<main id="app"><div class="skel" aria-label="Loading"></div></main>
+<footer style="margin-top:24px"><div class="wrap"><span>Sent with <a href="../">Meme Bank</a></span><span><a href="../privacy/">Privacy</a> · <a href="../terms/">Terms</a></span></div></footer>
+<script>
+(function(){
+  var API = "https://bbwjroytqxynborrqylr.supabase.co/functions/v1/memebank";
+  var app = document.getElementById("app");
+  var qs = new URLSearchParams(location.search);
+  var id = (qs.get("id") || location.hash.replace("#","") || "").trim().toLowerCase();
+  function viewerId(){
+    var v = null;
+    try { v = localStorage.getItem("mb.viewer"); } catch(e){}
+    if (!v) {
+      v = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + "-" + Math.random().toString(36).slice(2, 12));
+      try { localStorage.setItem("mb.viewer", v); } catch(e){}
+    }
+    return v;
+  }
+  var viewer = viewerId();
+  function esc(s){ return String(s || "").replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+  function site(u){
+    var h = ""; try { h = new URL(u).hostname.toLowerCase(); } catch(e){}
+    var map = [["tiktok","TikTok"],["instagram","Instagram"],["facebook","Facebook"],["fb.watch","Facebook"],["youtube","YouTube"],["youtu.be","YouTube"],["x.com","X"],["twitter","X"],["reddit","Reddit"],["threads","Threads"]];
+    for (var i=0;i<map.length;i++) if (h.indexOf(map[i][0]) >= 0) return map[i][1];
+    return h.replace(/^www\./,"") || "the web";
+  }
+  function state(big, title, text){
+    app.innerHTML = '<div class="state"><div class="big">'+big+'</div><h1>'+title+'</h1><p style="color:var(--muted)">'+text+'</p><p style="margin-top:20px"><a class="btn" href="../">What is Meme Bank?</a></p></div>';
+  }
+  if (!/^[a-z0-9]{7}$/.test(id)) { state("🤔","This link looks incomplete","Ask the person who sent it to copy the whole link again."); return; }
+
+  var data = null;
+  function render(){
+    var d = data;
+    var from = d.from ? esc(d.from) + " sent you this" : "Someone sent you this";
+    var media;
+    if (d.kind === "link") {
+      var s = site(d.original_url);
+      media = '<div class="linkcard"><div style="font-size:44px">🔗</div><div class="site">'+esc(s)+'</div>'+
+        (d.title ? '<div class="ttl">'+esc(d.title)+'</div>' : '')+
+        '<a class="btn" href="'+esc(d.original_url)+'" rel="noopener">Open in '+esc(s)+'</a></div>';
+    } else {
+      var ratio = (d.w && d.h) ? ' width="'+d.w+'" height="'+d.h+'"' : '';
+      media = '<img src="'+esc(d.image_url)+'" alt="'+esc(d.title || "Meme")+'"'+ratio+'>' + (d.title ? '<div class="cap">'+esc(d.title)+'</div>' : '');
+    }
+    var exp = d.expires_at ? "Link expires " + new Date(d.expires_at).toLocaleDateString("en-AU",{day:"numeric",month:"short"}) : "";
+    app.innerHTML =
+      '<p class="from">'+from+'</p>'+
+      '<div class="meme">'+media+'</div>'+
+      '<div class="react">'+
+        '<button class="rb up" id="up" aria-pressed="'+(d.my===1)+'">👍 <span class="n">'+(d.ups||0)+'</span></button>'+
+        '<button class="rb down" id="down" aria-pressed="'+(d.my===-1)+'">👎 <span class="n">'+(d.downs||0)+'</span></button>'+
+      '</div>'+
+      '<p class="meta">'+(d.views||1)+' view'+((d.views||1)===1?'':'s')+(exp ? ' · ' + exp : '')+'</p>'+
+      '<p class="get">Keep every meme you meant to show someone. <a href="../">Get Meme Bank</a></p>';
+    document.getElementById("up").onclick = function(){ react(d.my === 1 ? 0 : 1); };
+    document.getElementById("down").onclick = function(){ react(d.my === -1 ? 0 : -1); };
+  }
+  function react(r){
+    var prev = data.my; data.my = r;
+    if (prev === 1) data.ups--; if (prev === -1) data.downs--;
+    if (r === 1) data.ups++; if (r === -1) data.downs++;
+    render();
+    fetch(API, {method:"POST", headers:{"content-type":"application/json"}, body: JSON.stringify({op:"react", id:id, viewer:viewer, reaction:r})})
+      .then(function(res){ return res.ok ? res.json() : null; })
+      .then(function(j){ if (j) { data.ups = j.ups; data.downs = j.downs; data.views = j.views; render(); } })
+      .catch(function(){});
+  }
+  fetch(API + "?id=" + encodeURIComponent(id) + "&viewer=" + encodeURIComponent(viewer))
+    .then(function(res){ if (res.status === 404) throw "gone"; if (!res.ok) throw "err"; return res.json(); })
+    .then(function(j){ data = j; if (j.title) document.title = j.title + " · Meme Bank"; render(); })
+    .catch(function(e){
+      if (e === "gone") state("⌛","This meme has gone","Links last 30 days unless the sender keeps them. Ask them to send it again.");
+      else state("📶","Couldn't load the meme","Check your connection and refresh the page.");
+    });
+})();
+</script>
+</body>
+</html>

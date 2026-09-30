@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+ <defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF7A45"/><stop offset="1" stop-color="#F0442A"/></linearGradient>
+  <radialGradient id="face" cx="0.42" cy="0.35" r="0.75"><stop offset="0" stop-color="#FFE066"/><stop offset="1" stop-color="#FFC62E"/></radialGradient>
+ </defs>
+ <rect width="1024" height="1024" fill="url(#bg)"/>
+ <circle cx="512" cy="512" r="360" fill="url(#face)"/>
+ <!-- closed laughing eyes -->
+ <path d="M362 440 q45 -58 90 0" stroke="#2A2530" stroke-width="32" fill="none" stroke-linecap="round"/>
+ <path d="M572 440 q45 -58 90 0" stroke="#2A2530" stroke-width="32" fill="none" stroke-linecap="round"/>
+ <!-- open laughing mouth, no tongue -->
+ <path d="M352 540 h320 q0 190 -160 190 q-160 0 -160 -190 z" fill="#2A2530"/>
+ <!-- tears -->
+ <path d="M326 478 q-46 58 -22 104 q34 22 58 -12 q12 -46 -36 -92z" fill="#4FC3F7"/>
+ <path d="M698 478 q46 58 22 104 q-34 22 -58 -12 q-12 -46 36 -92z" fill="#4FC3F7"/>
+</svg>
