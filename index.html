@@ -71,7 +71,7 @@ body{overflow-x:hidden}
 .found{font-size:12px;color:#6E6470;margin-bottom:6px}
 .tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}
 .tile{aspect-ratio:1;border-radius:9px;display:flex;flex-direction:column;justify-content:space-between;align-items:center;
-  padding:5px 3px;text-align:center;overflow:hidden;position:relative}
+  padding:4px 3px;text-align:center;overflow:hidden;position:relative;background-size:cover;background-position:center;background-color:#333}
 .tile .tt{font:11px/1 var(--meme);color:#fff;text-transform:uppercase;-webkit-text-stroke:.6px #000;paint-order:stroke fill}
 .tile .ee{font-size:26px;line-height:1}
 .tile.match{outline:3px solid var(--lime);outline-offset:-3px}
@@ -95,10 +95,9 @@ body{overflow-x:hidden}
 .row{display:flex;gap:16px;width:max-content;animation:scroll 40s linear infinite}
 .row+.row{margin-top:16px;animation-direction:reverse;animation-duration:48s}
 @keyframes scroll{to{transform:translateX(-50%)}}
-.mm{width:180px;aspect-ratio:1;border-radius:16px;display:flex;flex-direction:column;justify-content:space-between;align-items:center;
-  padding:12px 8px;text-align:center;flex:none;box-shadow:0 10px 24px -12px rgba(0,0,0,.8)}
-.mm .t{font:21px/1 var(--meme);color:#fff;text-transform:uppercase;-webkit-text-stroke:1.2px #000;paint-order:stroke fill;text-shadow:0 2px 0 #000}
-.mm .e{font-size:56px;line-height:1}
+.mm{width:220px;aspect-ratio:1;border-radius:16px;display:flex;flex-direction:column;justify-content:space-between;align-items:center;
+  padding:10px 8px;text-align:center;flex:none;box-shadow:0 10px 24px -12px rgba(0,0,0,.8);background-size:cover;background-position:center;background-color:#333}
+.mm .t{font:22px/1.02 var(--meme);color:#fff;text-transform:uppercase;-webkit-text-stroke:1.6px #000;paint-order:stroke fill;text-shadow:0 2px 2px rgba(0,0,0,.6);max-width:100%}
 .g1{background:linear-gradient(135deg,#6C5CE7,#A29BFE)}.g2{background:linear-gradient(135deg,#F39C12,#F8C471)}
 .g3{background:linear-gradient(135deg,#16A085,#48C9B0)}.g4{background:linear-gradient(135deg,#E84393,#FD79A8)}
 .g5{background:linear-gradient(135deg,#0984E3,#74B9FF)}.g6{background:linear-gradient(135deg,#2D3436,#636E72)}
@@ -116,7 +115,7 @@ body{overflow-x:hidden}
 .fmt .cap b{font:800 15px var(--display)}
 .fmt .cap span{font:600 12px var(--body);color:var(--muted);background:var(--soft);border-radius:99px;padding:3px 9px;white-space:nowrap}
 /* impact */
-.impact{aspect-ratio:1;background:linear-gradient(135deg,#2C1A6B,#6242E2);display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:16px 10px;text-align:center}
+.impact{aspect-ratio:1;background-size:cover;background-position:center;display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:16px 10px;text-align:center}
 .impact .t{font:34px/1 var(--meme);color:#fff;text-transform:uppercase;-webkit-text-stroke:1.6px #000;paint-order:stroke fill;text-shadow:0 3px 0 #000}
 .impact .e{font-size:96px;line-height:1}
 /* chat-style formats */
@@ -124,17 +123,18 @@ body{overflow-x:hidden}
 .chat p+p{margin-top:8px}
 .chat .dim{color:#777;font-weight:500}
 .chat .big{font-size:64px;text-align:center;margin-top:10px;line-height:1}
+.ph{aspect-ratio:4/3;background-size:cover;background-position:center;display:flex;align-items:flex-end;justify-content:center;padding:10px}
+.ph span{font:26px/1 var(--meme);color:#fff;text-transform:uppercase;-webkit-text-stroke:1.4px #000;paint-order:stroke fill}
 /* two row no / yes */
-.nah{display:grid;grid-template-columns:90px 1fr;background:#fff;color:#111}
+.nah{display:grid;grid-template-columns:110px 1fr;background:#fff;color:#111}
 .nah div{padding:14px;display:flex;align-items:center;font:700 18px/1.25 var(--body);border-bottom:2px solid #eee}
-.nah .face{font-size:54px;justify-content:center;background:#FFF3C4}
-.nah .face.yes{background:#DFFFD0}
+.nah .face{min-height:110px;background-size:cover;background-position:center}
 .nah div:nth-last-child(-n+2){border-bottom:0}
 /* expectation vs reality */
 .vs{display:grid;grid-template-columns:1fr 1fr;color:#fff;font:22px/1 var(--meme);text-transform:uppercase;text-align:center}
-.vs div{padding:14px 8px 18px;display:flex;flex-direction:column;gap:10px;align-items:center}
-.vs .e{font-size:70px;line-height:1}
-.vs .a{background:linear-gradient(160deg,#0984E3,#74B9FF)}.vs .b{background:linear-gradient(160deg,#636E72,#2D3436)}
+.vs div{aspect-ratio:3/4;padding:12px 8px;display:flex;flex-direction:column;justify-content:space-between;align-items:center;background-size:cover;background-position:center;
+  -webkit-text-stroke:1.4px #000;paint-order:stroke fill;text-shadow:0 2px 2px rgba(0,0,0,.6)}
+.vs div span{font-size:18px}
 /* galaxy brain tiers */
 .tiers{background:#0b0718;color:#fff}
 .tiers div{display:grid;grid-template-columns:1fr 64px;align-items:center;border-bottom:1px solid rgba(255,255,255,.12);font:700 16px/1.25 var(--body)}
@@ -148,7 +148,7 @@ body{overflow-x:hidden}
 .pack h5{margin:0 0 8px;font:800 17px var(--display);text-align:center}
 .pack .g{display:grid;grid-template-columns:1fr 1fr;gap:6px}
 .pack .g div{background:#F4F1F8;border-radius:10px;padding:10px 6px;text-align:center;font:600 13px/1.2 var(--body)}
-.pack .g div b{display:block;font-size:34px;line-height:1.2}
+.pack .g div i{display:block;aspect-ratio:1;border-radius:8px;background-size:cover;background-position:center;margin-bottom:6px}
 
 /* ---------- FEATURES ---------- */
 .band{background:var(--card);border-block:1px solid var(--line)}
@@ -178,7 +178,7 @@ details p{margin-top:8px;color:var(--muted)}
 @media (max-width:420px){
   .phone{width:250px;height:510px}.stage{height:520px}
   .f2{right:-4px}.float{font-size:13px;padding:8px 11px}
-  .mm{width:150px}.mm .t{font-size:18px}.mm .e{font-size:46px}
+  .mm{width:170px}.mm .t{font-size:17px}
 }
 @media (prefers-reduced-motion:reduce){.row{animation:none}}
 </style>
@@ -215,18 +215,18 @@ details p{margin-top:8px;color:var(--muted)}
             <div class="chips"><span class="on">All</span><span>⭐ Favourites</span><span>🐶 Animals</span><span>💼 Work</span></div>
             <div class="found">3 of 1,284 memes</div>
             <div class="tiles">
-              <div class="tile match g1"><span class="tt">Monday</span><span class="ee">😵</span><span class="tt">again</span></div>
-              <div class="tile match g2"><span class="tt">Me on</span><span class="ee">🧟</span><span class="tt">monday</span></div>
-              <div class="tile match g5"><span class="tt">Monday</span><span class="ee">☕</span><span class="tt">coffee x4</span></div>
-              <div class="tile g3"><span class="tt">Leg day</span><span class="ee">🪜</span><span class="tt">stairs: hi</span></div>
-              <div class="tile g4"><span class="tt">The cat</span><span class="ee">🐈</span><span class="tt">no thanks</span></div>
-              <div class="tile g7"><span class="tt">Group</span><span class="ee">🙈</span><span class="tt">chat</span></div>
-              <div class="tile g8"><span class="tt">Me</span><span class="ee">🦖</span><span class="tt">at 2am</span></div>
-              <div class="tile g6"><span class="tt">Wifi</span><span class="ee">📶</span><span class="tt">1 bar</span></div>
-              <div class="tile g2"><span class="tt">Dog</span><span class="ee">🐕</span><span class="tt">zoomies</span></div>
-              <div class="tile g1"><span class="tt">Payday</span><span class="ee">🤑</span><span class="tt">gone</span></div>
-              <div class="tile g5"><span class="tt">Plans</span><span class="ee">🛋️</span><span class="tt">cancelled</span></div>
-              <div class="tile g3"><span class="tt">Me</span><span class="ee">🤓</span><span class="tt">actually</span></div>
+              <div class="tile match" style="background-image:url(img/m/cat-eyes.jpg)"><span class="tt">Monday</span><span class="tt">again</span></div>
+              <div class="tile match" style="background-image:url(img/m/goat-monday.jpg)"><span class="tt">Me on</span><span class="tt">monday</span></div>
+              <div class="tile match" style="background-image:url(img/m/grumpy.jpg)"><span class="tt">Monday</span><span class="tt">meeting</span></div>
+              <div class="tile" style="background-image:url(img/m/dog-tilt.jpg)"><span class="tt">Send me</span><span class="tt">that meme</span></div>
+              <div class="tile" style="background-image:url(img/m/owl-laugh.jpg)"><span class="tt">Dead</span><span class="tt">💀</span></div>
+              <div class="tile" style="background-image:url(img/m/raccoon-bucket.jpg)"><span class="tt">Me</span><span class="tt">at 2am</span></div>
+              <div class="tile" style="background-image:url(img/m/dog-shades.jpg)"><span class="tt">Sent</span><span class="tt">✓</span></div>
+              <div class="tile" style="background-image:url(img/m/goat-tongue.jpg)"><span class="tt">Storage</span><span class="tt">full</span></div>
+              <div class="tile" style="background-image:url(img/m/unimpressed.jpg)"><span class="tt">Seen</span><span class="tt">✓</span></div>
+              <div class="tile" style="background-image:url(img/m/dog-goggles.jpg)"><span class="tt">Me</span><span class="tt">searching</span></div>
+              <div class="tile" style="background-image:url(img/m/cat-laugh.jpg)"><span class="tt">Actually</span><span class="tt">funny</span></div>
+              <div class="tile" style="background-image:url(img/m/owl-side.jpg)"><span class="tt">I'll send</span><span class="tt">it later</span></div>
             </div>
           </div>
         </div></div>
@@ -237,41 +237,40 @@ details p{margin-top:8px;color:var(--muted)}
 
 <div class="marq" aria-hidden="true">
   <div class="row">
-    <div class="mm g1"><span class="t">Me: sleeps early</span><span class="e">😴</span><span class="t">Also me: 2am memes</span></div>
-    <div class="mm g2"><span class="t">When the wifi</span><span class="e">📶</span><span class="t">drops to 1 bar</span></div>
-    <div class="mm g3"><span class="t">Leg day</span><span class="e">🪜</span><span class="t">Stairs: hello</span></div>
-    <div class="mm g4"><span class="t">The cat when</span><span class="e">🐈</span><span class="t">I move 1 cushion</span></div>
-    <div class="mm g5"><span class="t">Me at 9am</span><span class="e">☕</span><span class="t">Me at 9:05</span></div>
-    <div class="mm g7"><span class="t">Group chat</span><span class="e">🙈</span><span class="t">at 3am</span></div>
-    <div class="mm g8"><span class="t">Dog hears</span><span class="e">🐕</span><span class="t">the word walk</span></div>
-    <div class="mm g6"><span class="t">My bank</span><span class="e">💸</span><span class="t">after payday</span></div>
-    <!-- repeat for the seamless loop -->
-    <div class="mm g1"><span class="t">Me: sleeps early</span><span class="e">😴</span><span class="t">Also me: 2am memes</span></div>
-    <div class="mm g2"><span class="t">When the wifi</span><span class="e">📶</span><span class="t">drops to 1 bar</span></div>
-    <div class="mm g3"><span class="t">Leg day</span><span class="e">🪜</span><span class="t">Stairs: hello</span></div>
-    <div class="mm g4"><span class="t">The cat when</span><span class="e">🐈</span><span class="t">I move 1 cushion</span></div>
-    <div class="mm g5"><span class="t">Me at 9am</span><span class="e">☕</span><span class="t">Me at 9:05</span></div>
-    <div class="mm g7"><span class="t">Group chat</span><span class="e">🙈</span><span class="t">at 3am</span></div>
-    <div class="mm g8"><span class="t">Dog hears</span><span class="e">🐕</span><span class="t">the word walk</span></div>
-    <div class="mm g6"><span class="t">My bank</span><span class="e">💸</span><span class="t">after payday</span></div>
+    <div class="mm" style="background-image:url(img/m/grumpy.jpg)"><span class="t">Me when you say</span><span class="t">'I've already seen that one'</span></div>
+    <div class="mm" style="background-image:url(img/m/goat-scream.jpg)"><span class="t">My phone storage</span><span class="t">when I save one more meme</span></div>
+    <div class="mm" style="background-image:url(img/m/owl-laugh.jpg)"><span class="t">When she reacts</span><span class="t">'dead 💀'</span></div>
+    <div class="mm" style="background-image:url(img/m/cat-eyes.jpg)"><span class="t">When Meme Bank finds it</span><span class="t">in one second</span></div>
+    <div class="mm" style="background-image:url(img/m/dog-shades.jpg)"><span class="t">Sent it to your Meme Bank</span><span class="t">not your camera roll</span></div>
+    <div class="mm" style="background-image:url(img/m/raccoon-bucket.jpg)"><span class="t">Me at 2am</span><span class="t">saving memes for later</span></div>
+    <div class="mm" style="background-image:url(img/m/dog-tilt.jpg)"><span class="t">'Send me that meme'</span><span class="t">*scrolls 40,000 photos*</span></div>
+    <div class="mm" style="background-image:url(img/m/unimpressed.jpg)"><span class="t">Seen ✓</span><span class="t">no reaction</span></div>
+    <div class="mm" style="background-image:url(img/m/grumpy.jpg)"><span class="t">Me when you say</span><span class="t">'I've already seen that one'</span></div>
+    <div class="mm" style="background-image:url(img/m/goat-scream.jpg)"><span class="t">My phone storage</span><span class="t">when I save one more meme</span></div>
+    <div class="mm" style="background-image:url(img/m/owl-laugh.jpg)"><span class="t">When she reacts</span><span class="t">'dead 💀'</span></div>
+    <div class="mm" style="background-image:url(img/m/cat-eyes.jpg)"><span class="t">When Meme Bank finds it</span><span class="t">in one second</span></div>
+    <div class="mm" style="background-image:url(img/m/dog-shades.jpg)"><span class="t">Sent it to your Meme Bank</span><span class="t">not your camera roll</span></div>
+    <div class="mm" style="background-image:url(img/m/raccoon-bucket.jpg)"><span class="t">Me at 2am</span><span class="t">saving memes for later</span></div>
+    <div class="mm" style="background-image:url(img/m/dog-tilt.jpg)"><span class="t">'Send me that meme'</span><span class="t">*scrolls 40,000 photos*</span></div>
+    <div class="mm" style="background-image:url(img/m/unimpressed.jpg)"><span class="t">Seen ✓</span><span class="t">no reaction</span></div>
   </div>
   <div class="row">
-    <div class="mm g5"><span class="t">Nobody:</span><span class="e">🦖</span><span class="t">Me: rawr</span></div>
-    <div class="mm g8"><span class="t">POV: you said</span><span class="e">🫠</span><span class="t">"I'll send it later"</span></div>
-    <div class="mm g4"><span class="t">Plans</span><span class="e">🛋️</span><span class="t">cancelled. yes.</span></div>
-    <div class="mm g1"><span class="t">Brain at 3am</span><span class="e">🧠</span><span class="t">remember 2009?</span></div>
-    <div class="mm g7"><span class="t">Me explaining</span><span class="e">🤓</span><span class="t">a meme to mum</span></div>
-    <div class="mm g3"><span class="t">Monday</span><span class="e">🧟</span><span class="t">again??</span></div>
-    <div class="mm g2"><span class="t">It's giving</span><span class="e">💅</span><span class="t">main character</span></div>
-    <div class="mm g6"><span class="t">Battery 2%</span><span class="e">🪫</span><span class="t">still scrolling</span></div>
-    <div class="mm g5"><span class="t">Nobody:</span><span class="e">🦖</span><span class="t">Me: rawr</span></div>
-    <div class="mm g8"><span class="t">POV: you said</span><span class="e">🫠</span><span class="t">"I'll send it later"</span></div>
-    <div class="mm g4"><span class="t">Plans</span><span class="e">🛋️</span><span class="t">cancelled. yes.</span></div>
-    <div class="mm g1"><span class="t">Brain at 3am</span><span class="e">🧠</span><span class="t">remember 2009?</span></div>
-    <div class="mm g7"><span class="t">Me explaining</span><span class="e">🤓</span><span class="t">a meme to mum</span></div>
-    <div class="mm g3"><span class="t">Monday</span><span class="e">🧟</span><span class="t">again??</span></div>
-    <div class="mm g2"><span class="t">It's giving</span><span class="e">💅</span><span class="t">main character</span></div>
-    <div class="mm g6"><span class="t">Battery 2%</span><span class="e">🪫</span><span class="t">still scrolling</span></div>
+    <div class="mm" style="background-image:url(img/m/dog-goggles.jpg)"><span class="t">Me looking for</span><span class="t">that one cat meme</span></div>
+    <div class="mm" style="background-image:url(img/m/goat-monday.jpg)"><span class="t">Monday</span><span class="t">again</span></div>
+    <div class="mm" style="background-image:url(img/m/kitten-yell.jpg)"><span class="t">When a video plays with sound</span><span class="t">at work</span></div>
+    <div class="mm" style="background-image:url(img/m/raccoon-stare.jpg)"><span class="t">Watched ▶︎</span><span class="t">still no reaction</span></div>
+    <div class="mm" style="background-image:url(img/m/owl-side.jpg)"><span class="t">When they say</span><span class="t">'I'll send it later'</span></div>
+    <div class="mm" style="background-image:url(img/m/goat-tongue.jpg)"><span class="t">It's giving</span><span class="t">main character</span></div>
+    <div class="mm" style="background-image:url(img/m/dog-nose.jpg)"><span class="t">Me checking if</span><span class="t">you've seen my meme yet</span></div>
+    <div class="mm" style="background-image:url(img/m/cat-laugh.jpg)"><span class="t">When the meme</span><span class="t">is actually funny</span></div>
+    <div class="mm" style="background-image:url(img/m/dog-goggles.jpg)"><span class="t">Me looking for</span><span class="t">that one cat meme</span></div>
+    <div class="mm" style="background-image:url(img/m/goat-monday.jpg)"><span class="t">Monday</span><span class="t">again</span></div>
+    <div class="mm" style="background-image:url(img/m/kitten-yell.jpg)"><span class="t">When a video plays with sound</span><span class="t">at work</span></div>
+    <div class="mm" style="background-image:url(img/m/raccoon-stare.jpg)"><span class="t">Watched ▶︎</span><span class="t">still no reaction</span></div>
+    <div class="mm" style="background-image:url(img/m/owl-side.jpg)"><span class="t">When they say</span><span class="t">'I'll send it later'</span></div>
+    <div class="mm" style="background-image:url(img/m/goat-tongue.jpg)"><span class="t">It's giving</span><span class="t">main character</span></div>
+    <div class="mm" style="background-image:url(img/m/dog-nose.jpg)"><span class="t">Me checking if</span><span class="t">you've seen my meme yet</span></div>
+    <div class="mm" style="background-image:url(img/m/cat-laugh.jpg)"><span class="t">When the meme</span><span class="t">is actually funny</span></div>
   </div>
 </div>
 
@@ -282,17 +281,17 @@ details p{margin-top:8px;color:var(--muted)}
     <p class="sub">Top and bottom text, "Nobody:", POV, expectation vs reality, the big-brain ladder. Meme Bank reads the words on all of them, so typing one word finds the lot. You can make every one of these in the app too.</p>
     <div class="wall">
       <div class="fmt">
-        <div class="impact"><span class="t">Me: I'll sleep early</span><span class="e">🛌</span><span class="t">Also me at 2am: one more meme</span></div>
+        <div class="impact" style="background-image:url(img/m/raccoon-bucket.jpg)"><span class="t">Me: I'll sleep early</span><span class="t">Also me at 2am: one more meme</span></div>
         <div class="cap"><b>Top text, bottom text</b><span>the original</span></div>
       </div>
       <div class="fmt">
-        <div class="chat"><p class="dim">Nobody:</p><p class="dim">Absolutely nobody:</p><p>Me at 2am: saving my 400th cat meme</p><p class="big">🐈‍⬛</p></div>
+        <div class="chat"><p class="dim">Nobody:</p><p class="dim">Absolutely nobody:</p><p>Me at 2am: saving my 400th cat meme</p></div><div class="ph" style="background-image:url(img/m/cat-eyes.jpg)"></div>
         <div class="cap"><b>Nobody:</b><span>search "nobody"</span></div>
       </div>
       <div class="fmt">
         <div class="nah">
-          <div class="face">🙅</div><div>Sending 40 memes in the group chat</div>
-          <div class="face yes">👉</div><div>Sending them straight into their Meme Bank</div>
+          <div class="face" style="background-image:url(img/m/grumpy.jpg)"></div><div>Sending 40 memes in the group chat</div>
+          <div class="face yes" style="background-image:url(img/m/dog-shades.jpg)"></div><div>Sending them straight into their Meme Bank</div>
         </div>
         <div class="cap"><b>Nah / yeah</b><span>2 rows</span></div>
       </div>
@@ -306,21 +305,21 @@ details p{margin-top:8px;color:var(--muted)}
         <div class="cap"><b>The big-brain ladder</b><span>4 panels</span></div>
       </div>
       <div class="fmt">
-        <div class="vs"><div class="a">Expectation<span class="e">🏋️</span>gym 6am</div><div class="b">Reality<span class="e">🛌</span>snooze x5</div></div>
+        <div class="vs"><div class="a" style="background-image:url(img/m/dog-shades.jpg)">Expectation<span>me, sending memes</span></div><div class="b" style="background-image:url(img/m/goat-scream.jpg)">Reality<span>my phone storage</span></div></div>
         <div class="cap"><b>Expectation vs reality</b><span>2 panels</span></div>
       </div>
       <div class="fmt">
-        <div class="chat"><p>POV: you told them you'd send "that meme" later</p><p class="dim">three weeks and 900 photos later…</p><p class="big">🫠🔍</p></div>
+        <div class="chat"><p>POV: you told them you'd send "that meme" later</p><p class="dim">three weeks and 900 photos later…</p></div><div class="ph" style="background-image:url(img/m/dog-goggles.jpg)"></div>
         <div class="cap"><b>POV</b><span>caption above</span></div>
       </div>
       <div class="fmt">
         <div class="pack"><h5>The meme hoarder starter pack</h5>
-          <div class="g"><div><b>📱</b>40,000 photos</div><div><b>🪫</b>2% battery</div><div><b>😂</b>"wait, one more"</div><div><b>🙈</b>"I had it somewhere"</div></div>
+          <div class="g"><div><i style="background-image:url(img/m/goat-scream.jpg)"></i>40,000 photos</div><div><i style="background-image:url(img/m/raccoon-bucket.jpg)"></i>awake at 2am</div><div><i style="background-image:url(img/m/cat-laugh.jpg)"></i>"wait, one more"</div><div><i style="background-image:url(img/m/dog-goggles.jpg)"></i>"I had it somewhere"</div></div>
         </div>
         <div class="cap"><b>Starter pack</b><span>4 panels</span></div>
       </div>
       <div class="fmt">
-        <div class="chat"><p>Tell me you're a meme hoarder without telling me you're a meme hoarder</p><p class="dim">Me:</p><p class="big">📸 40,213</p></div>
+        <div class="chat"><p>Tell me you're a meme hoarder without telling me you're a meme hoarder</p><p class="dim">Me:</p></div><div class="ph tall" style="background-image:url(img/m/goat-scream.jpg)"><span>40,213 photos</span></div>
         <div class="cap"><b>Tell me without telling me</b><span>caption above</span></div>
       </div>
     </div>
@@ -374,6 +373,6 @@ details p{margin-top:8px;color:var(--muted)}
   </div>
 </section>
 
-<footer><div class="wrap"><span>© 2026 Edward Halvey · Meme Bank</span><span><a href="privacy/">Privacy</a> · <a href="terms/">Terms</a> · <a href="mailto:eh@metroanaes.com.au">Contact</a></span></div></footer>
+<footer><div class="wrap"><span>© 2026 Edward Halvey · Meme Bank · Photos from <a href="https://unsplash.com">Unsplash</a></span><span><a href="privacy/">Privacy</a> · <a href="terms/">Terms</a> · <a href="mailto:eh@metroanaes.com.au">Contact</a></span></div></footer>
 </body>
 </html>
